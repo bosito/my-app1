@@ -15,4 +15,12 @@ export default StyleSheet.create({
         height: 100,
         backgroundColor: 'red',
     },
+    tinyLogo: {
+        width: 170,
+        height: 170,
+        borderRadius: 100,
+        borderWidth: 2,
+        borderColor: 'gray',
+        margin: 10,
+    },
 });

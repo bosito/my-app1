@@ -3,16 +3,16 @@ import Styles from '../../Styles/Styles';
 import { View, Text } from 'react-native'
 
 class Animal {
-    constructor(especie, edad, color){
+    constructor(especie, edad, color) {
         this.especie = especie;
         this.edad = edad;
         this.color = color;
-        this.info = `Hola soy un ${ this.especie } tengo ${ this.edad }años 
-        y soy de color ${ this.color}`;
+        this.info = `Hola soy un ${this.especie} tengo ${this.edad}años 
+        y soy de color ${this.color}`;
     }
     //metodo del objeto;
 
-    verInfo() { 
+    verInfo() {
         let info = this.info;
         return info;
     }
@@ -21,12 +21,12 @@ class Animal {
 
 //Erencias
 
-class Perro extends Animal{
-    constructor(especie,edad,color,raza){
-        super(especie,edad,color);
+class Perro extends Animal {
+    constructor(especie, edad, color, raza) {
+        super(especie, edad, color);
         this.raza = raza;
     }
-    ladrar(){
+    ladrar() {
         let accion = 'WoW';
         return accion;
     }
@@ -34,28 +34,33 @@ class Perro extends Animal{
 
 //static
 
-class Gato extends Animal{
-    constructor(especie,edad,color,colorAlas){
-        super(especie,edad,color);
-        this.colorAlas = colorAlas;
+class Gato extends Animal {
+    constructor(especie, edad, color, raza) {
+        super(especie, edad, color);
+        this.raza = null;
+    }
+    static modificarRaza() {
+        return this.raza = 'gatote'
     }
 }
 
-let gato = new  Gato('gatito',5,'blanco-negro','pinto');
-let perro2 = new Perro('canino', 20, 'cafe','chihuahua');
+const gato = new Gato('gatito', 5, 'blanco-negro', 'pinto');
+const perro2 = new Perro('canino', 20, 'cafe', 'chihuahua');
 
 //perro.verInfo();
-//let info = perro2.verInfo();
-let info = gato.verInfo();
+let info = perro2.verInfo();
+Gato.modificarRaza();
+//gato.modificarRaza();
+let inf = gato.raza;
 //let info = perro2.ladrar();
 
 export default function Ejercicio4() {
 
     let txtPrincipal = `Practica de la programacion orientada a objetos`;
     return (
-        <View>
+        <View style={Styles.container}>
             <Text style={Styles.txtGlobal}>{txtPrincipal}</Text>
-            <Text>{info}</Text>
+            <Text>{inf}</Text>
         </View>
     )
 }

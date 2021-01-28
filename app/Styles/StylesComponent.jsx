@@ -11,5 +11,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 15,
+        backgroundColor: 'black'
     },
 });

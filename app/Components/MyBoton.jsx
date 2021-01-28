@@ -9,7 +9,7 @@ export default function MyBoton(props) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={Styles.myBotonStyle}>
-        <Text style={{ fontSize: 19 }}>{title}</Text>
+        <Text style={{ fontSize: 19, color: 'white' }}>{title}</Text>
       </View>
     </TouchableOpacity>
   );

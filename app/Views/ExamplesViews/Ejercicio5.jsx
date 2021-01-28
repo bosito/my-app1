@@ -58,6 +58,7 @@ export default function Ejercicio5() {
         <Text style={Styles.txtGlobal}>{txtPrincipal}</Text>
 
         <Animatable.View animation="fadeInUpBig" style={styles.objet} />
+        
         <Text>Animacion Disparada</Text>
         <Animatable.View ref={animationRef} style={styles.objet2} />
         <MyBoton

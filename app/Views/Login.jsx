@@ -1,68 +1,96 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import * as Animatable from "react-native-animatable";
+import { MyBoton } from '../Components/IndexComonent'
 import LottieView from 'lottie-react-native';
 import Styles from "../Styles/Styles";
 
-export default function Login() {
+export default function Login(props) {
 
+    const { navigation } = props;
+    const InputRef = useRef();
+    const IconReg = useRef();
+    const [mensaje, setMensaje] = useState("");
+    const image = require("../../assets/images/reactNativeIcon.png");
     const [dataInput, setData] = useState({
         userName: "",
         contraseña: "",
     });
-    const InputRef = useRef();
-    const [mensaje, setMensaje] = useState("");
-    const image = require("../../assets/images/reactNativeIcon.png");
-
 
     const dataTextInput2 = (txt) => {
-        let dato = parseInt(txt);
-        setData({ ...dataInput, hora: dato });
+        let dato = txt;
+        setData({ ...dataInput, userName: dato });
     };
 
     const dataTextInput1 = (txt) => {
-        let dato = parseInt(txt);
-        setData({ ...dataInput, edad: dato });
+        let dato = txt;
+        setData({ ...dataInput, contraseña: dato });
     };
+
+    const verifiContraseña = () => {
+        let myContraseña = "123"
+        let myUserName = 'pepe'
+
+        if (dataInput.contraseña && dataInput.userName) {
+            if (dataInput.contraseña === myContraseña && dataInput.userName === myUserName) {
+                navigation.navigate('MenuPrincipal')
+            } else {
+                setMensaje("Algo salio mal")
+            }
+        } else {
+            setMensaje("Rellena Todos los Datos")
+        }
+
+    }
 
 
     return (
-        <View style={styles.container}>
-            <View style={styles.containerSuperior}>
-                <Animatable.Image
-                    style={Styles.tinyLogo}
-                    source={image}
-                    animation={'zoomIn'}
-                    direction={'normal'}
-                    duration={2000}
-                    easing={'ease-in'}
-                    resizeMode={'stretch'}
-                />
+        <KeyboardAvoidingView style={{ flex: 1 }}>
+            <View style={styles.container}>
+
+                <View style={styles.containerSuperior}>
+                    <TouchableWithoutFeedback onPress={() => IconReg.current.swing()}>
+                        <Animatable.Image
+                            ref={IconReg}
+                            style={styles.tinyLogo}
+                            source={image}
+                            animation={'zoomIn'}
+                            direction={'normal'}
+                            duration={2000}
+                            easing={'ease-in'}
+                            resizeMode={'stretch'}
+                        />
+                    </TouchableWithoutFeedback>
+                </View>
+
+                <Animatable.View style={styles.containerData} animation={'fadeInUpBig'} duration={2000}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={"Nombre de usuario"}
+                        onChangeText={dataTextInput2}
+                        keyboardType={'default'}
+                        maxLength={10}
+                        onSubmitEditing={() => InputRef.current.focus()}
+
+                    />
+                    <TextInput
+                        ref={InputRef}
+                        style={styles.input}
+                        placeholder={"Ingresa la Contraseña"}
+                        onChangeText={dataTextInput1}
+                        keyboardType={'number-pad'}
+                        maxLength={6}
+                    />
+                    <View style={styles.myInputConten}>
+                        <Text style={styles.txtmensaje}>{mensaje}</Text>
+                    </View>
+
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
+                        <MyBoton title={'Comprobar Contraseña'} onPress={verifiContraseña} />
+                    </View>
+                </Animatable.View>
             </View>
-
-            <Animatable.View style={styles.containerData} animation={'fadeInUpBig'} duration={2000}>
-                <Text>hola que hay</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder={"Nombre de usuario"}
-                    onChangeText={dataTextInput2}
-                    keyboardType={'default'}
-                    maxLength={10}
-                    onSubmitEditing={() => { InputRef.current.focus() }}
-
-                />
-                <TextInput
-                    ref={InputRef}
-                    style={styles.input}
-                    placeholder={"Ingresa la Contraseña"}
-                    onChangeText={dataTextInput1}
-                    keyboardType={'number-pad'}
-                    maxLength={2}
-                    //onSubmitEditing={validarCliente}
-                />
-                <View style={styles.myInputConten}></View>
-            </Animatable.View>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -72,11 +100,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#24241c'
     },
     containerSuperior: {
-        flex: 0.4,
+        flex: 0.5,
         alignItems: 'center',
     },
     containerData: {
-        flex: 0.7,
+        flex: 0.5,
         alignItems: 'center',
         backgroundColor: '#04d3fa',
         borderTopLeftRadius: 35,
@@ -84,17 +112,18 @@ const styles = StyleSheet.create({
     },
     input: {
         width: "80%",
-        margin: 10,
+        marginTop: 20,
         padding: 10,
         borderWidth: 2,
-        borderColor: "gray",
+        borderRadius: 10,
+        borderColor: "black",
         backgroundColor: 'white'
     },
     tinyLogo: {
-        width: 50,
-        height: 50,
+        width: 150,
+        height: 150,
         borderRadius: 100,
-        margin: 10,
+        marginTop: 100,
     },
     myInputConten: {
         width: "80%",
@@ -103,5 +132,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "black",
         backgroundColor: 'rgba(18, 22, 44, 0.7)'
+    },
+    txtmensaje: {
+        color: 'white'
     },
 })

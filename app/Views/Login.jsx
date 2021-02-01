@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, KeyboardAvoidingView, StatusBar } from 'react-native';
 import * as Animatable from "react-native-animatable";
 import { MyBoton } from '../Components/IndexComonent'
 import LottieView from 'lottie-react-native';
@@ -46,6 +46,8 @@ export default function Login(props) {
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }}>
+            <StatusBar  barStyle={'light-content'} backgroundColor={'#24241c'} />
+            
             <View style={styles.container}>
 
                 <View style={styles.containerSuperior}>
@@ -63,7 +65,7 @@ export default function Login(props) {
                     </TouchableWithoutFeedback>
                 </View>
 
-                <Animatable.View style={styles.containerData} animation={'fadeInUpBig'} duration={2000}>
+                <Animatable.View style={styles.containerData} animation={'slideInUp'} duration={4000}>
                     <TextInput
                         style={styles.input}
                         placeholder={"Nombre de usuario"}

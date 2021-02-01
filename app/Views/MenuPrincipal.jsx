@@ -25,14 +25,15 @@ export default function MenuPrincipal(props) {
 
     const IconReg = useRef();
     const BotonRef = useRef();
+    const BotonRef2 = useRef();
 
     //pasar este componente para hacerlo reutilizable
     const Personal_Boton = (props) => {
 
-        const { imageFondo, viewName, txtDescripcion, txtTilteImage } = props;
+        const { imageFondo, viewName, txtDescripcion, txtTilteImage, reFerencia } = props;
 
         const myOnPress = () => {
-            BotonRef.current.bounceIn();
+            reFerencia.current.bounceIn();
             setTimeout(() => {
                 navigation.navigate(viewName);
             }, 1000);
@@ -41,7 +42,7 @@ export default function MenuPrincipal(props) {
         return (
             <>
                 <TouchableOpacity onPress={myOnPress}>
-                    <Animatable.View ref={BotonRef} animation={'fadeInRight'} direction={'normal'} duration={2000} style={{ alignItems: 'center', backgroundColor: 'white', elevation: 5, marginVertical: 10, }} >
+                    <Animatable.View ref={reFerencia} animation={'fadeInRight'} direction={'normal'} duration={2000} style={{ alignItems: 'center', backgroundColor: 'white', elevation: 5, marginVertical: 10, }} >
                         <ImageBackground source={imageFondo} style={StylesMenu.botonApp}>
                             <View style={{ width: '100%', height: 30, backgroundColor: 'rgba(18, 22, 44, 0.5)', alignItems: 'center' }}>
                                 <Text style={{ color: 'white', fontSize: 19, fontStyle: 'italic' }}>
@@ -106,12 +107,14 @@ export default function MenuPrincipal(props) {
 
                 <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
 
-                <Personal_Boton imageFondo={imgPriApp} viewName={'exampleUdemy'}
+                <Personal_Boton reFerencia={BotonRef}
+                    imageFondo={imgPriApp} viewName={'exampleUdemy'}
                     txtDescripcion={'Prestamos'}
                     txtTilteImage={'Cotizador'}
                 />
 
-                <Personal_Boton imageFondo={imgbotonSecond} viewName={'exampleUdemy'}
+                <Personal_Boton reFerencia={BotonRef2}
+                    imageFondo={imgbotonSecond} viewName={'exampleUdemy'}
                     txtDescripcion={'Recordatorio de Compleaños'}
                     txtTilteImage={'Cumpleaños'}
                 />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Styles } from '../../Styles/IndexStyles';
 import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
+import * as Animatable from "react-native-animatable";
 import { MyBoton } from '../../Components/IndexComonent';
 import { StylesComparador } from "../../Styles/IndexStyles";
 import RNPickerSelect from 'react-native-picker-select';
@@ -59,14 +60,14 @@ export default function ComparadorPrestamo() {
         return (
             <View style={StylesComparador.center}>
                 {total && (
-                    <View style={StylesComparador.boxResult}>
+                    <Animatable.View style={StylesComparador.boxResult} animation={'fadeInLeft'} >
                         <Text style={StylesComparador.title}>RESUMEN</Text>
                         <MyComponent title={'Cantidad Solicitada'} value={`${capital} $`} />
                         <MyComponent title={'Interes'} value={`${interes} %`} />
                         <MyComponent title={'Plazos'} value={`${meses} meses`} />
                         <MyComponent title={'Pago mensual:'} value={`${total.pagoMensual} $`} />
                         <MyComponent title={'Total a pagar:'} value={`${total.totalPlayable} $`} />
-                    </View>
+                    </Animatable.View>
                 )}
                 <View>
                     <Text style={StylesComparador.error}>{errormensage}</Text>
@@ -80,11 +81,11 @@ export default function ComparadorPrestamo() {
         <View style={Styles.container}>
             <StatusBar barStyle={'light-content'} backgroundColor={COLOR_GLOBAL_PRIMARI} />
 
-            <View style={StylesComparador.heder}>
+            <Animatable.View style={StylesComparador.heder} animation={'fadeInDownBig'} duration={2000}>
                 <View style={StylesComparador.relleno} />
                 <Text style={StylesComparador.titleApp}>Cotizador de Prestamos</Text>
 
-                <View style={StylesComparador.viewFrom}>
+                <Animatable.View style={StylesComparador.viewFrom} animation={'fadeInDownBig'} duration={4000} >
                     <View style={StylesComparador.viewInput}>
 
                         <TextInput placeholder={'Cantidad a pedir'}
@@ -113,16 +114,16 @@ export default function ComparadorPrestamo() {
                         />
                     </View>
 
-                </View>
-            </View>
+                </Animatable.View>
+            </Animatable.View>
 
             <ResutCalculation capital={capital} interes={interes}
                 meses={meses} total={total} errormensage={errormensage}
             />
 
-            <View style={StylesComparador.fodeer}>
+            <Animatable.View style={StylesComparador.fodeer} animation={'fadeInUp'} duration={4000} >
                 <MyBoton title={'Calcular Precio'} onPress={muestraDato} />
-            </View>
+            </Animatable.View>
 
         </View>
     )

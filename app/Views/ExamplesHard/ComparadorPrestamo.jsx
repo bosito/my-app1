@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Styles } from '../../Styles/IndexStyles';
-import { View, Text, StyleSheet, StatusBar, TextInput, Button } from 'react-native';
-import { MyBoton } from '../../Components/IndexComonent'
+import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
+import { MyBoton } from '../../Components/IndexComonent';
+import { StylesComparador } from "../../Styles/IndexStyles";
 import RNPickerSelect from 'react-native-picker-select';
 
 export default function ComparadorPrestamo() {
@@ -12,7 +13,7 @@ export default function ComparadorPrestamo() {
     const [total, setTotal] = useState(null);
     const [errormensage, setErrormensage] = useState(null);
 
-    const [imput, setImput] = useState([]);
+    const COLOR_GLOBAL_PRIMARI = '#0098D3';
 
     const dataTextInput1 = (txt) => setCapital(txt);
     const dataTextInput2 = (txt) => setInteres(txt);
@@ -20,7 +21,7 @@ export default function ComparadorPrestamo() {
 
     useEffect(() => {
         muestraDato()
-    }, [capital,interes,meses])
+    }, [capital, interes, meses])
 
     const muestraDato = () => {
         if (!capital) {
@@ -45,37 +46,33 @@ export default function ComparadorPrestamo() {
 
         const { capital, interes, meses, total, errormensage } = props;
 
-        const MyComponent = (props) => {
-
-            const {title, value} = props;
-
+        function MyComponent(props) {
+            const { title, value } = props;
             return (
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={[styles.title, { fontSize: 15 }]}>{title}</Text>
-                    <Text style={[styles.title, { fontSize: 15 }]}>{value}</Text>
+                    <Text style={[StylesComparador.title, { fontSize: 15 }]}>{title}</Text>
+                    <Text style={[StylesComparador.title, { fontSize: 15 }]}>{value}</Text>
                 </View>
             )
         }
 
         return (
-            <View style={styles.center}>
+            <View style={StylesComparador.center}>
                 {total && (
-                    <View style={styles.boxResult}>
-                        <Text style={styles.title}>RESUMEN</Text>
-                        <MyComponent title={'Cantidad Solicitada'} value={`${capital} $`}/>
-                        <MyComponent title={'Interes'} value={`${interes} %`}/>
-                        <MyComponent title={'Plazos'} value={`${meses} meses`}/>
-                        <MyComponent title={'Pago mensual:'} value={`${total.pagoMensual} $`}/>
-                        <MyComponent title={'Total a pagar:'} value={`${total.totalPlayable} $`}/>
+                    <View style={StylesComparador.boxResult}>
+                        <Text style={StylesComparador.title}>RESUMEN</Text>
+                        <MyComponent title={'Cantidad Solicitada'} value={`${capital} $`} />
+                        <MyComponent title={'Interes'} value={`${interes} %`} />
+                        <MyComponent title={'Plazos'} value={`${meses} meses`} />
+                        <MyComponent title={'Pago mensual:'} value={`${total.pagoMensual} $`} />
+                        <MyComponent title={'Total a pagar:'} value={`${total.totalPlayable} $`} />
                     </View>
                 )}
                 <View>
-                    <Text style={styles.error}>{errormensage}</Text>
+                    <Text style={StylesComparador.error}>{errormensage}</Text>
                 </View>
             </View>
         )
-
-        
     }
 
 
@@ -83,29 +80,29 @@ export default function ComparadorPrestamo() {
         <View style={Styles.container}>
             <StatusBar barStyle={'light-content'} backgroundColor={COLOR_GLOBAL_PRIMARI} />
 
-            <View style={styles.heder}>
-                <View style={styles.relleno} />
-                <Text style={styles.titleApp}>Cotizador de Prestamos</Text>
+            <View style={StylesComparador.heder}>
+                <View style={StylesComparador.relleno} />
+                <Text style={StylesComparador.titleApp}>Cotizador de Prestamos</Text>
 
-                <View style={styles.viewFrom}>
-                    <View style={styles.viewInput}>
+                <View style={StylesComparador.viewFrom}>
+                    <View style={StylesComparador.viewInput}>
 
                         <TextInput placeholder={'Cantidad a pedir'}
                             onChangeText={dataTextInput1}
                             keyboardType='number-pad'
-                            style={styles.input}
+                            style={StylesComparador.input}
                         />
                         <TextInput placeholder={'Interes %'}
                             onChangeText={dataTextInput2}
                             keyboardType='number-pad'
-                            style={[styles.input, styles.inputPorcentage]}
+                            style={[StylesComparador.input, StylesComparador.inputPorcentage]}
                         />
                     </View>
 
                     <View style={{ backgroundColor: 'white', borderRadius: 5 }}>
                         <RNPickerSelect
                             placeholder={{ label: 'selecciona los plazos...', value: null }}
-                            style={styles.inputAndorid}
+                            style={StylesComparador.inputAndorid}
                             onValueChange={dataTextInput3}
                             items={[
                                 { label: '3 Meses', value: 3 },
@@ -123,107 +120,10 @@ export default function ComparadorPrestamo() {
                 meses={meses} total={total} errormensage={errormensage}
             />
 
-            <View style={styles.fodeer}>
+            <View style={StylesComparador.fodeer}>
                 <MyBoton title={'Calcular Precio'} onPress={muestraDato} />
             </View>
 
         </View>
     )
 }
-
-const COLOR_GLOBAL_PRIMARI = '#0098D3';
-const COLOR_GLOBAL_SECUMDARY = '#006691';
-
-const styles = StyleSheet.create({
-    heder: {
-        width: '100%',
-        height: 225,
-        alignItems: 'center',
-    },
-    titleApp: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#fff',
-        marginTop: 15,
-    },
-    viewFrom: {
-        position: 'absolute',
-        bottom: 0,
-        width: '85%',
-        paddingHorizontal: 40,
-        backgroundColor: COLOR_GLOBAL_SECUMDARY,
-        borderRadius: 30,
-        height: 150,
-        justifyContent: 'center',
-        //alignItems: 'center'
-    },
-    relleno: {
-        backgroundColor: COLOR_GLOBAL_PRIMARI,
-        width: '100%',
-        height: 170,
-        borderBottomRightRadius: 30,
-        borderBottomLeftRadius: 30,
-        alignItems: 'center',
-        zIndex: -1,
-        position: 'absolute'
-    },
-    viewInput: {
-        flex: 0,
-        flexDirection: 'row'
-    },
-    input: {
-        height: 50,
-        backgroundColor: '#fff',
-        borderColor: COLOR_GLOBAL_PRIMARI,
-        borderRadius: 5,
-        width: '60%',
-        marginRight: 5,
-        marginLeft: -5,
-        marginBottom: 10,
-        color: '#000',
-        paddingHorizontal: 10,
-    },
-    inputPorcentage: {
-        width: '40%',
-        marginLeft: 5,
-    },
-    inputAndorid: {
-        fontSize: 16,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
-        borderWidth: 0.5,
-        borderColor: 'gray',
-        borderRadius: 8,
-        color: 'black',
-        paddingRight: 30,
-        backgroundColor: 'white'
-    },
-    center: {
-        flex: 1,
-        width: '100%',
-    },
-    fodeer: {
-        width: '100%',
-        backgroundColor: COLOR_GLOBAL_PRIMARI,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        height: 70,
-        borderTopRightRadius: 30,
-        borderTopLeftRadius: 30,
-    },
-    error: {
-        textAlign: 'center',
-        color: '#f00',
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    boxResult: {
-        padding: 30,
-    },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginBottom: 30,
-    },
-});

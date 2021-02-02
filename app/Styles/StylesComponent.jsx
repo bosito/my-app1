@@ -1,4 +1,4 @@
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     myBotonStyle: {
@@ -12,5 +12,13 @@ export default StyleSheet.create({
         justifyContent: 'center',
         padding: 15,
         backgroundColor: 'black'
+    },
+    botonApp: {
+        flex: 0,
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: 325,
+        height: 100,
+        justifyContent: 'center',
     },
 });

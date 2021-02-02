@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
 import {
-    View, Text, ScrollView, ImageBackground, StyleSheet,
-    Image, TouchableWithoutFeedback, TouchableOpacity
+    View, Text, ScrollView, ImageBackground, StyleSheet, TouchableWithoutFeedback, TouchableOpacity
 } from 'react-native';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
 import { MaterialCommunityIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
-import { LinearGradient } from 'expo-linear-gradient';
 import { MyBoton } from '../Components/IndexComonent';
+import Boton_Image from "../Components/Boton_Image";
 
 
 export default function MenuPrincipal(props) {
@@ -26,36 +25,6 @@ export default function MenuPrincipal(props) {
     const IconReg = useRef();
     const BotonRef = useRef();
     const BotonRef2 = useRef();
-
-    //pasar este componente para hacerlo reutilizable
-    const Personal_Boton = (props) => {
-
-        const { imageFondo, viewName, txtDescripcion, txtTilteImage, reFerencia } = props;
-
-        const myOnPress = () => {
-            reFerencia.current.bounceIn();
-            setTimeout(() => {
-                navigation.navigate(viewName);
-            }, 1000);
-        }
-
-        return (
-            <>
-                <TouchableOpacity onPress={myOnPress}>
-                    <Animatable.View ref={reFerencia} animation={'fadeInRight'} direction={'normal'} duration={2000} style={{ alignItems: 'center', backgroundColor: 'white', elevation: 5, marginVertical: 10, }} >
-                        <ImageBackground source={imageFondo} style={StylesMenu.botonApp}>
-                            <View style={{ width: '100%', height: 30, backgroundColor: 'rgba(18, 22, 44, 0.5)', alignItems: 'center' }}>
-                                <Text style={{ color: 'white', fontSize: 19, fontStyle: 'italic' }}>
-                                    {txtTilteImage}
-                                </Text>
-                            </View>
-                        </ImageBackground>
-                        <Text style={{ color: 'gray', fontSize: 13, fontStyle: 'italic' }}>{txtDescripcion}</Text>
-                    </Animatable.View>
-                </TouchableOpacity>
-            </>
-        )
-    };
 
     const MyIconstRedes = () => {
         return (
@@ -107,15 +76,15 @@ export default function MenuPrincipal(props) {
 
                 <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
 
-                <Personal_Boton reFerencia={BotonRef}
+                <Boton_Image reFerencia={BotonRef}
                     imageFondo={imgPriApp} viewName={'exampleUdemy'}
-                    txtDescripcion={'Prestamos'}
+                    txtDescripcion={'Prestamos'} navigation={navigation}
                     txtTilteImage={'Cotizador'}
                 />
 
-                <Personal_Boton reFerencia={BotonRef2}
+                <Boton_Image reFerencia={BotonRef2}
                     imageFondo={imgbotonSecond} viewName={'exampleUdemy'}
-                    txtDescripcion={'Recordatorio de Compleaños'}
+                    txtDescripcion={'Recordatorio de Compleaños'} navigation={navigation}
                     txtTilteImage={'Cumpleaños'}
                 />
 

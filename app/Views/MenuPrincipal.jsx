@@ -83,7 +83,7 @@ export default function MenuPrincipal(props) {
                 />
 
                 <Boton_Image reFerencia={BotonRef2}
-                    imageFondo={imgbotonSecond} viewName={'exampleUdemy'}
+                    imageFondo={imgbotonSecond} viewName={'exampleUdemyApp2'}
                     txtDescripcion={'Recordatorio de Compleaños'} navigation={navigation}
                     txtTilteImage={'Cumpleaños'}
                 />

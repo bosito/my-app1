@@ -5,3 +5,4 @@ export {default as Ejercicio4} from '../../Views/ExamplesViews/Ejercicio4';
 export {default as Ejercicio5} from '../../Views/ExamplesViews/Ejercicio5';
 export {default as MenuEjercicios} from '../../Views/ExamplesViews/MenuEjercicios';
 export {default as ComparadorPrestamo} from '../../Views/ExamplesHard/ComparadorPrestamo';
+export {default as CumpleañosApp} from '../../Views/ExamplesHard/CumpleañosApp';

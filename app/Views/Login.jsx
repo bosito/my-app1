@@ -12,6 +12,7 @@ export default function Login(props) {
     const IconReg = useRef();
     const [mensaje, setMensaje] = useState("");
     const image = require("../../assets/images/reactNativeIcon.png");
+    const [colorText, setColorText] = useState(true);
     const [dataInput, setData] = useState({
         userName: "",
         contraseña: "",
@@ -33,12 +34,18 @@ export default function Login(props) {
 
         if (dataInput.contraseña && dataInput.userName) {
             if (dataInput.contraseña === myContraseña && dataInput.userName === myUserName) {
-                navigation.navigate('MenuPrincipal')
+                setMensaje("Cargando...");
+                setColorText(true);
+                setTimeout(() => {
+                    navigation.navigate('MenuPrincipal');
+                }, 1000);
             } else {
-                setMensaje("Algo salio mal")
+                setMensaje("Algo salio mal");
+                setColorText(false);
             }
         } else {
-            setMensaje("Rellena Todos los Datos")
+            setMensaje("Rellena Todos los Datos");
+            setColorText(false);
         }
 
     }
@@ -46,8 +53,8 @@ export default function Login(props) {
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }}>
-            <StatusBar  barStyle={'light-content'} backgroundColor={'#24241c'} />
-            
+            <StatusBar barStyle={'light-content'} backgroundColor={'#24241c'} />
+
             <View style={styles.container}>
 
                 <View style={styles.containerSuperior}>
@@ -84,7 +91,9 @@ export default function Login(props) {
                         maxLength={6}
                     />
                     <View style={styles.myInputConten}>
-                        <Text style={styles.txtmensaje}>{mensaje}</Text>
+                        <Text style={{ color: colorText ? 'white' : 'red' }}>
+                            {mensaje}
+                        </Text>
                     </View>
 
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -134,8 +143,5 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "black",
         backgroundColor: 'rgba(18, 22, 44, 0.7)'
-    },
-    txtmensaje: {
-        color: 'white'
     },
 })

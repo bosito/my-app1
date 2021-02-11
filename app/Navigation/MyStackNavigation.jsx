@@ -1,11 +1,15 @@
 import React from "react";
 import { MenuPrincipal, Login } from '../Views/IndexViews';
-import { Ejercicio1, Ejercicio2, Ejercicio3, Ejercicio4, Ejercicio5, MenuEjercicios, ComparadorPrestamo } from './ExamplexNavigation/IndexExample'
+import {
+  Ejercicio1, Ejercicio2, Ejercicio3, Ejercicio4,
+  Ejercicio5, MenuEjercicios, ComparadorPrestamo, CumpleañosApp
+} from './ExamplexNavigation/IndexExample'
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 const StackExamples = createStackNavigator();
 const StackExampleCotizador = createStackNavigator();
+const StackCumpleañosApp = createStackNavigator();
 
 function ExamplesSimples() {
   return (
@@ -23,8 +27,16 @@ function ExamplesSimples() {
 function ComparadorPrestamos() {
   return (
     <StackExampleCotizador.Navigator>
-      <StackExamples.Screen name="ComparadorPrestamo" options={{ headerShown: false }} component={ComparadorPrestamo} />
+      <StackExampleCotizador.Screen name="ComparadorPrestamo" options={{ headerShown: false }} component={ComparadorPrestamo} />
     </StackExampleCotizador.Navigator>
+  )
+}
+
+function CumpleañosApps() {
+  return (
+    <StackCumpleañosApp.Navigator>
+      <StackCumpleañosApp.Screen name="CumpleañosApp" options={{ headerShown: false }} component={CumpleañosApp} />
+    </StackCumpleañosApp.Navigator>
   )
 }
 
@@ -35,6 +47,7 @@ export default function MyStackNavigation() {
       <Stack.Screen name="MenuPrincipal" component={MenuPrincipal} />
       <Stack.Screen name="exampleSimples" options={{ headerShown: false }} component={ExamplesSimples} />
       <Stack.Screen name="exampleUdemy" options={{ headerShown: false }} component={ComparadorPrestamos} />
+      <Stack.Screen name="exampleUdemyApp2" options={{ headerShown: false }} component={CumpleañosApps} />
     </Stack.Navigator>
   );
 }

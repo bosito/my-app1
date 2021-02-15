@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, KeyboardAvoidingView, StatusBar } from 'react-native';
 import * as Animatable from "react-native-animatable";
-import { MyBoton } from '../Components/IndexComonent'
+import { MyBoton } from '../Components/IndexComonent';
+import { StylesLogin, Styles, } from '../Styles/IndexStyles'
 import LottieView from 'lottie-react-native';
-import Styles from "../Styles/Styles";
 
 export default function Login(props) {
 
@@ -55,13 +55,13 @@ export default function Login(props) {
         <KeyboardAvoidingView style={{ flex: 1 }}>
             <StatusBar barStyle={'light-content'} backgroundColor={'#24241c'} />
 
-            <View style={styles.container}>
+            <View style={StylesLogin.container}>
 
-                <View style={styles.containerSuperior}>
+                <View style={StylesLogin.containerSuperior}>
                     <TouchableWithoutFeedback onPress={() => IconReg.current.swing()}>
                         <Animatable.Image
                             ref={IconReg}
-                            style={styles.tinyLogo}
+                            style={StylesLogin.tinyLogo}
                             source={image}
                             animation={'zoomIn'}
                             direction={'normal'}
@@ -70,11 +70,17 @@ export default function Login(props) {
                             resizeMode={'stretch'}
                         />
                     </TouchableWithoutFeedback>
+                    <Animatable.Text style={[Styles.txtGlobal, { color: "white", fontStyle: 'italic' }]}
+                        animation={'flipInX'}
+                        duration={5000}
+                    >
+                        Mi Portafolio
+                    </Animatable.Text>
                 </View>
 
-                <Animatable.View style={styles.containerData} animation={'slideInUp'} duration={4000}>
+                <Animatable.View style={StylesLogin.containerData} animation={'fadeInUpBig'} duration={4000}>
                     <TextInput
-                        style={styles.input}
+                        style={StylesLogin.input}
                         placeholder={"Nombre de usuario"}
                         onChangeText={dataTextInput2}
                         keyboardType={'default'}
@@ -84,13 +90,13 @@ export default function Login(props) {
                     />
                     <TextInput
                         ref={InputRef}
-                        style={styles.input}
+                        style={StylesLogin.input}
                         placeholder={"Ingresa la Contraseña"}
                         onChangeText={dataTextInput1}
                         keyboardType={'number-pad'}
                         maxLength={6}
                     />
-                    <View style={styles.myInputConten}>
+                    <View style={StylesLogin.myInputConten}>
                         <Text style={{ color: colorText ? 'white' : 'red' }}>
                             {mensaje}
                         </Text>
@@ -104,44 +110,3 @@ export default function Login(props) {
         </KeyboardAvoidingView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#24241c'
-    },
-    containerSuperior: {
-        flex: 0.5,
-        alignItems: 'center',
-    },
-    containerData: {
-        flex: 0.5,
-        alignItems: 'center',
-        backgroundColor: '#04d3fa',
-        borderTopLeftRadius: 35,
-        borderTopRightRadius: 35,
-    },
-    input: {
-        width: "80%",
-        marginTop: 20,
-        padding: 10,
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: "black",
-        backgroundColor: 'white'
-    },
-    tinyLogo: {
-        width: 150,
-        height: 150,
-        borderRadius: 100,
-        marginTop: 100,
-    },
-    myInputConten: {
-        width: "80%",
-        margin: 10,
-        padding: 10,
-        borderWidth: 2,
-        borderColor: "black",
-        backgroundColor: 'rgba(18, 22, 44, 0.7)'
-    },
-})

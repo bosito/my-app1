@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-app1",
-    "slug": "my-app1",
+    "name": "Portafolio",
+    "slug": "portafolio",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Hola soy un programador  junior este es mi portafolio en el cual recopilo varios proyectos para mostrar de manera funcional parte de mi experiencia ",
+    "githubUrl": "https://github.com/bosito/my-app1"
   }
 }

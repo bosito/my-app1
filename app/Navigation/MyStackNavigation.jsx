@@ -4,18 +4,20 @@ import {
   Ejercicio1, Ejercicio2, Ejercicio3, Ejercicio4,
   Ejercicio5, MenuEjercicios, ComparadorPrestamo, CumpleañosApp
 } from './ExamplexNavigation/IndexExample'
+import { FacebookView, GoogleView, GithView } from '../Views/WebViews/IndexWebViews'
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 const StackExamples = createStackNavigator();
 const StackExampleCotizador = createStackNavigator();
 const StackCumpleañosApp = createStackNavigator();
+const StackWebView = createStackNavigator();
 
 function ExamplesSimples() {
   return (
     <StackExamples.Navigator>
       <StackExamples.Screen name="example6" options={{ title: 'Menu de ejercicios' }} component={MenuEjercicios} />
-      <StackExamples.Screen name="example1" component={Ejercicio1} />
+      <StackExamples.Screen name="example1" options={{ headerShown: false }} component={Ejercicio1} />
       <StackExamples.Screen name="example2" options={{ title: 'La fiesta' }} component={Ejercicio2} />
       <StackExamples.Screen name="example3" options={{ title: 'Asistencia' }} component={Ejercicio3} />
       <StackExamples.Screen name="example4" options={{ title: 'POO' }} component={Ejercicio4} />
@@ -40,14 +42,18 @@ function CumpleañosApps() {
   )
 }
 
+
 export default function MyStackNavigation() {
   return (
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
-      <Stack.Screen name="MenuPrincipal" component={MenuPrincipal} />
+      <Stack.Screen name="MenuPrincipal" options={{ headerShown: false }} component={MenuPrincipal} />
       <Stack.Screen name="exampleSimples" options={{ headerShown: false }} component={ExamplesSimples} />
       <Stack.Screen name="exampleUdemy" options={{ headerShown: false }} component={ComparadorPrestamos} />
       <Stack.Screen name="exampleUdemyApp2" options={{ headerShown: false }} component={CumpleañosApps} />
+      <Stack.Screen name="Google" options={{ headerShown: false }} component={GoogleView} />
+      <Stack.Screen name="Facebook" options={{ headerShown: false }} component={FacebookView} />
+      <Stack.Screen name="Gith" options={{ headerShown: false }} component={GithView} />
     </Stack.Navigator>
   );
 }

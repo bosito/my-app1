@@ -11,7 +11,7 @@ export default function MenuEjercicios(props) {
     return (
         <View style={Styles.container}>
             <Text style={Styles.txtGlobal} >{txtPricipal}</Text>
-            <MyBoton title={'Cotizador de Prestamos'} onPress={() => navigation.navigate('example1')} navigation={navigation} />
+            <MyBoton title={'Parallax Header'} onPress={() => navigation.navigate('example1')} navigation={navigation} />
             <MyBoton title={'ejercicio2'} onPress={() => navigation.navigate('example2')} navigation={navigation} />
             <MyBoton title={'ejercicio3'} onPress={() => navigation.navigate('example3')} navigation={navigation} />
             <MyBoton title={'POO'} onPress={() => navigation.navigate('example4')} navigation={navigation} />

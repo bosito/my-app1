@@ -1,117 +1,219 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
-    View, Text, ScrollView, ImageBackground, StyleSheet, TouchableWithoutFeedback, TouchableOpacity
+    View, Text, ScrollView, StyleSheet,
+    TouchableWithoutFeedback, TouchableOpacity,
+    Dimensions, DrawerLayoutAndroid, Button,
 } from 'react-native';
+import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
-import { MaterialCommunityIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign, FontAwesome, EvilIcons, Ionicons } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
-import { MyBoton } from '../Components/IndexComonent';
-import Boton_Image from "../Components/Boton_Image";
+import { MyBoton, Boton_Image } from '../Components/IndexComonent';
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+
+const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;
+const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
+const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
+const NAV_BAR_HEIGHT = HEADER_HEIGHT - STATUS_BAR_HEIGHT;
 
 
 export default function MenuPrincipal(props) {
 
     const { navigation } = props;
-    const txtPricipal = `Jose Luis
-    desarrollador junior.`;
+
     const txtLema = `soy un desarrollador algo nuevo pero con la idea de nunca parar de aprender y este es mi potafolio.`;
+
     const image = require("../../assets/images/myIcon.png");
     const fondoPerfil = require("../../assets/images/fondoPerfil.png");
     const imageReact = require("../../assets/images/reactNativeIcon.png");
     const imgPriApp = require("../../assets/images/botonPimApp.png");
     const imgbotonSecond = require("../../assets/images/fondoCumpleaños.png");
-
+    const imgbotonThree = require("../../assets/images/CertificadoFondo.png");
+    const imgbotonFuor = require("../../assets/images/SecretFondo.png");
 
     const IconReg = useRef();
     const BotonRef = useRef();
     const BotonRef2 = useRef();
+    const BotonRef3 = useRef();
+    const BotonRef4 = useRef();
+    const DrawerNavigationReact = useRef();
+
+    const navigationView = () => (
+        <View style={[styles.container, styles.navigationContainer]}>
+            <Text style={styles.paragraph}>I'm in the Drawer!</Text>
+        </View>
+    );
+
+    const RenderNavBar = () => {
+        return (
+            <View style={stylesNav.navContainer}>
+                <View style={stylesNav.statusBar} />
+                <View style={stylesNav.navBar}>
+                    <TouchableOpacity style={stylesNav.iconLeft} onPress={() => navigation.navigate('Login')}>
+                        <Ionicons name="arrow-back" size={30} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={stylesNav.iconRight}
+                        onPress={() => DrawerNavigationReact.current.openDrawer()}
+                    >
+                        <EvilIcons name="navicon" size={30} color="white" />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    };
+
+    const title = () => {
+
+        const txtPricipal = `Jose Luis 
+    desarrollador junior.`;
+
+        return (
+            <>
+                <TouchableWithoutFeedback onPress={() => IconReg.current.pulse()}>
+                    <Animatable.Image
+                        ref={IconReg}
+                        style={StylesMenu.tinyLogo}
+                        source={image}
+                        animation={'zoomIn'}
+                        direction={'normal'}
+                        duration={2000}
+                    />
+                </TouchableWithoutFeedback>
+
+                <Animatable.Text style={[Styles.txtGlobal, { color: 'white', }]}
+                    animation={'fadeIn'}
+                    direction={'normal'}
+                    duration={8000}
+                >
+                    {txtPricipal}
+                </Animatable.Text>
+            </>
+        );
+    };
 
     const MyIconstRedes = () => {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <TouchableOpacity>
-                    <FontAwesome name="facebook-square" size={50} color="#04d3fa" />
+    
+                <TouchableOpacity onPress={() => navigation.navigate('Facebook')}>
+                    <FontAwesome name="facebook-square" size={40} color="#04d3fa" />
                 </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <AntDesign name="youtube" size={50} color="#04d3fa" />
+    
+                <TouchableOpacity >
+                    <FontAwesome name="whatsapp" size={40} color="#04d3fa" />
                 </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <MaterialCommunityIcons name="google-chrome" size={50} color="#04d3fa" />
+    
+                <TouchableOpacity onPress={() => navigation.navigate('Gith')}>
+                    <AntDesign name="github" size={40} color="#04d3fa" />
                 </TouchableOpacity>
-
+    
+                <TouchableOpacity onPress={() => navigation.navigate('Google')}>
+                    <MaterialCommunityIcons name="google-chrome" size={40} color="#04d3fa" />
+                </TouchableOpacity>
+                
             </View>
         )
     }
 
-    return (
-        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-            <View style={Styles.container}>
+    const renderContent = () => {
+        return (
+            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+                <View style={Styles.container}>
 
-                <ImageBackground source={fondoPerfil} style={StylesMenu.fondoPerfil}>
-                    <TouchableWithoutFeedback onPress={() => IconReg.current.pulse()}>
-                        <Animatable.Image
-                            ref={IconReg}
-                            style={StylesMenu.tinyLogo}
-                            source={image}
-                            animation={'zoomIn'}
-                            direction={'normal'}
-                            duration={2000}
-                        />
-                    </TouchableWithoutFeedback>
+                    <View style={{ width: '100%', height: 50, backgroundColor: 'black', }} />
 
-                    <Animatable.Text style={[Styles.txtGlobal, { color: 'white', }]}
-                        animation={'fadeIn'}
-                        direction={'normal'}
-                        duration={8000}
-                    >
-                        {txtPricipal}
-                    </Animatable.Text>
-                </ImageBackground>
+                    <Animatable.View style={styles.myCard} animation={'bounceInLeft'} direction={'normal'} duration={7000}>
+                        <Text style={{ fontStyle: 'italic' }}>{txtLema}</Text>
+                    </Animatable.View>
 
-                <Animatable.View style={styles.myCard} animation={'bounceInLeft'} direction={'normal'} duration={7000}>
-                    <Text style={{ fontStyle: 'italic' }}>{txtLema}</Text>
-                </Animatable.View>
+                    <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
 
-                <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
+                    <Boton_Image reFerencia={BotonRef}
+                        imageFondo={imgPriApp} viewName={'exampleUdemy'}
+                        txtDescripcion={'Prestamos'} navigation={navigation}
+                        txtTilteImage={'Cotizador'}
+                    />
 
-                <Boton_Image reFerencia={BotonRef}
-                    imageFondo={imgPriApp} viewName={'exampleUdemy'}
-                    txtDescripcion={'Prestamos'} navigation={navigation}
-                    txtTilteImage={'Cotizador'}
-                />
+                    <Boton_Image reFerencia={BotonRef2}
+                        imageFondo={imgbotonSecond} viewName={'exampleUdemyApp2'}
+                        txtDescripcion={'Recordatorio de Compleaños'} navigation={navigation}
+                        txtTilteImage={'Cumpleaños'}
+                    />
 
-                <Boton_Image reFerencia={BotonRef2}
-                    imageFondo={imgbotonSecond} viewName={'exampleUdemyApp2'}
-                    txtDescripcion={'Recordatorio de Compleaños'} navigation={navigation}
-                    txtTilteImage={'Cumpleaños'}
-                />
+                    <Boton_Image reFerencia={BotonRef3}
+                        imageFondo={imgbotonThree} viewName={'exampleUdemyApp2'}
+                        txtDescripcion={'Cursos Terminados'} navigation={navigation}
+                        txtTilteImage={'Certificados'}
+                    />
 
-                <View style={Styles.myFooder}>
+                    <Boton_Image reFerencia={BotonRef4}
+                        imageFondo={imgbotonFuor} viewName={'exampleUdemyApp2'}
+                        txtDescripcion={'Transporte'} navigation={navigation}
+                        txtTilteImage={'Proyectos Privados'}
+                    />
 
-                    <Text style={[Styles.txtGlobal, { color: 'white', }]}>Sigueme en mis redes Sociales</Text>
-
-                    <MyIconstRedes />
-
-                    <Text style={[Styles.txtGlobal, { color: 'white', }]}>Power React-Native</Text>
-                    <View style={styles.contenFoderLogo}>
-                        <Animatable.Image
-                            style={styles.tinyLogo}
-                            source={imageReact}
-                            animation={'rotate'}
-                            direction={'normal'}
-                            duration={9000}
-                            resizeMode={'stretch'}
-                            iterationCount={'infinite'}
-                        />
-                        <Text style={styles.txtFoder}>Creador Jose Luis Jimenez Vazquez</Text>
+                    <View style={Styles.myFooder}>
+                        <Text style={[Styles.txtGlobal, { color: 'white', }]}>
+                            Sigueme en mis redes Sociales
+                        </Text>
+                        <MyIconstRedes />
+                        <Text style={[Styles.txtGlobal, { color: 'white', }]}>
+                            Power React-Native
+                        </Text>
+                        <View style={styles.contenFoderLogo}>
+                            <Animatable.Image
+                                style={styles.tinyLogo}
+                                source={imageReact}
+                                animation={'rotate'}
+                                direction={'normal'}
+                                duration={9000}
+                                resizeMode={'stretch'}
+                                iterationCount={'infinite'}
+                            />
+                            <Text style={styles.txtFoder}>
+                                Creador Jose Luis Jimenez Vazquez
+                            </Text>
+                        </View>
                     </View>
+
                 </View>
+            </ScrollView >
+        )
+    }
 
-            </View>
-
-        </ScrollView >
+    //compoent principal
+    return (
+        <DrawerLayoutAndroid ref={DrawerNavigationReact}
+            drawerWidth={270}
+            drawerPosition={"left"}
+            renderNavigationView={navigationView}
+            drawerBackgroundColor="#24241c"
+        >
+            <ReactNativeParallaxHeader
+                headerMinHeight={HEADER_HEIGHT}
+                headerMaxHeight={300}
+                extraScrollHeight={50}
+                navbarColor="black"
+                titleStyle={stylesNav.titleStyle}
+                title={title()}
+                backgroundImage={fondoPerfil}
+                backgroundImageScale={1}
+                renderNavBar={RenderNavBar}
+                renderContent={renderContent}
+                scrollEventThrottle={50}
+                //backgroundColor="black"
+                //containerStyle={stylesNav.container}
+                //contentContainerStyle={stylesNav.contentContainer}
+                innerContainerStyle={stylesNav.container}
+                alwaysShowTitle={false}
+                alwaysShowNavBar={true}
+                scrollViewProps={{
+                    onScrollBeginDrag: () => null,
+                    onScrollEndDrag: () => null,
+                }}
+            />
+        </DrawerLayoutAndroid>
     )
 }
 
@@ -139,4 +241,30 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
 })
+
+const stylesNav = StyleSheet.create({
+    contentContainer: {
+        flexGrow: 1,
+    },
+    navContainer: {
+        height: HEADER_HEIGHT,
+        marginHorizontal: 10,
+    },
+    statusBar: {
+        height: STATUS_BAR_HEIGHT,
+        backgroundColor: 'transparent',
+    },
+    navBar: {
+        height: NAV_BAR_HEIGHT,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+    },
+    titleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 18,
+    },
+});
 

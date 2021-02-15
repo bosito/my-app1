@@ -6,8 +6,9 @@ import StylesComponent from "../Styles/StylesComponent";
 export default function Boton_Image(props) {
 
     const { imageFondo, viewName, txtDescripcion, txtTilteImage, reFerencia, navigation } = props;
-    let txterror =`Para visualizar el boton coloque una imagen de fondo`
-    let txtErrorReferencia = "para una segunda Animacion Coloque una Variable de Referencia (useRef)"
+
+    const txterror =`Para visualizar el boton coloque una imagen de fondo`
+    const txtErrorReferencia = "para una segunda Animacion Coloque una Variable de Referencia (useRef)"
 
     const myOnPress = () => {
         if (reFerencia) {

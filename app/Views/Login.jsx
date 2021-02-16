@@ -13,9 +13,10 @@ export default function Login(props) {
     const [mensaje, setMensaje] = useState("");
     const image = require("../../assets/images/reactNativeIcon.png");
     const [colorText, setColorText] = useState(true);
+    //borrar la contraseña xd
     const [dataInput, setData] = useState({
-        userName: "",
-        contraseña: "",
+        userName: "pepe",
+        contraseña: "123",
     });
 
     const dataTextInput2 = (txt) => {

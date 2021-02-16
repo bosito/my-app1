@@ -20,8 +20,7 @@ export default function Boton_Image(props) {
             return(
                 <Text style={{ color: 'red', margin: 10, fontSize: 20}}>{txtErrorReferencia}</Text>
             )
-        }  
-
+        }
     }
 
     if (imageFondo) {

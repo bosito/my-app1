@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import {
     View, Text, ScrollView, StyleSheet,
     TouchableWithoutFeedback, TouchableOpacity,
-    Dimensions, DrawerLayoutAndroid, Button,
+    Dimensions, DrawerLayoutAndroid, Image, Linking
 } from 'react-native';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
-import { MaterialCommunityIcons, AntDesign, FontAwesome, EvilIcons, Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign, FontAwesome, EvilIcons, Ionicons, Octicons, } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
 import { MyBoton, Boton_Image } from '../Components/IndexComonent';
 
@@ -53,6 +53,14 @@ export default function MenuPrincipal(props) {
                     <TouchableOpacity style={stylesNav.iconLeft} onPress={() => navigation.navigate('Login')}>
                         <Ionicons name="arrow-back" size={30} color="white" />
                     </TouchableOpacity>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                        <Image
+                            style={[StylesMenu.tinyLogo, { width: 50, height: 50 }]}
+                            source={image}
+                        />
+                        <Text style={{ color: 'white', fontSize: 16, fontStyle: 'italic' }}>Jose Luis Desarrollador</Text>
+                    </View>
+
                     <TouchableOpacity style={stylesNav.iconRight}
                         onPress={() => DrawerNavigationReact.current.openDrawer()}
                     >
@@ -68,9 +76,17 @@ export default function MenuPrincipal(props) {
         const txtPricipal = `Jose Luis 
     desarrollador junior.`;
 
+        const AuctionPress = () => {
+            IconReg.current.pulse();
+            setTimeout(() => {
+                DrawerNavigationReact.current.openDrawer();
+            }, 1000);
+
+        }
+
         return (
             <>
-                <TouchableWithoutFeedback onPress={() => IconReg.current.pulse()}>
+                <TouchableWithoutFeedback onPress={AuctionPress}>
                     <Animatable.Image
                         ref={IconReg}
                         style={StylesMenu.tinyLogo}
@@ -93,25 +109,39 @@ export default function MenuPrincipal(props) {
     };
 
     const MyIconstRedes = () => {
+
+        const handleWhatsappPress = async () => {
+            await Linking.openURL("http://wa.me/9981801932")
+        }
+
+        const handleEailPress = async () => {
+            //en Ios la separacion es con & en lugar de ?
+            await Linking.openURL("mailto:bosito321@gmail.com?subject=Asunto Posible Trabajo&body=Este es tu mensaje, para mi.")
+        }
+
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-    
+
                 <TouchableOpacity onPress={() => navigation.navigate('Facebook')}>
                     <FontAwesome name="facebook-square" size={40} color="#04d3fa" />
                 </TouchableOpacity>
-    
-                <TouchableOpacity >
+
+                <TouchableOpacity onPress={handleEailPress}>
+                    <Octicons name="mail" size={40} color="#04d3fa" />
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={handleWhatsappPress} >
                     <FontAwesome name="whatsapp" size={40} color="#04d3fa" />
                 </TouchableOpacity>
-    
-                <TouchableOpacity onPress={() => navigation.navigate('Gith')}>
-                    <AntDesign name="github" size={40} color="#04d3fa" />
-                </TouchableOpacity>
-    
+
                 <TouchableOpacity onPress={() => navigation.navigate('Google')}>
                     <MaterialCommunityIcons name="google-chrome" size={40} color="#04d3fa" />
                 </TouchableOpacity>
-                
+
+                <TouchableOpacity onPress={() => navigation.navigate('Gith')}>
+                    <AntDesign name="github" size={40} color="#04d3fa" />
+                </TouchableOpacity>
+
             </View>
         )
     }
@@ -192,7 +222,7 @@ export default function MenuPrincipal(props) {
         >
             <ReactNativeParallaxHeader
                 headerMinHeight={HEADER_HEIGHT}
-                headerMaxHeight={300}
+                headerMaxHeight={270}
                 extraScrollHeight={50}
                 navbarColor="black"
                 titleStyle={stylesNav.titleStyle}
@@ -207,7 +237,7 @@ export default function MenuPrincipal(props) {
                 //contentContainerStyle={stylesNav.contentContainer}
                 innerContainerStyle={stylesNav.container}
                 alwaysShowTitle={false}
-                alwaysShowNavBar={true}
+                alwaysShowNavBar={false}
                 scrollViewProps={{
                     onScrollBeginDrag: () => null,
                     onScrollEndDrag: () => null,

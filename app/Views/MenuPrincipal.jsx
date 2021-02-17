@@ -51,7 +51,7 @@ export default function MenuPrincipal(props) {
                             style={[StylesMenu.tinyLogo, { width: 50, height: 50 }]}
                             source={image}
                         />
-                        <Text style={{ color: 'white', fontSize: 16, fontStyle: 'italic' }}>Jose Luis Desarrollador</Text>
+                        <Text style={{ color: 'white', fontSize: 16, fontStyle: 'italic' }}>Jose Luis Developer</Text>
                     </View>
 
                     <TouchableOpacity style={stylesNav.iconRight}
@@ -75,7 +75,7 @@ export default function MenuPrincipal(props) {
                 DrawerNavigationReact.current.openDrawer();
             }, 1000);
         }
-        
+
         return (
             <>
                 <TouchableWithoutFeedback onPress={AuctionPress}>

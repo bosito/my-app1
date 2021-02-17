@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuPrincipal, Login } from '../Views/IndexViews';
 import {
-  Ejercicio1, Ejercicio2, Ejercicio3, Ejercicio4,
+  Ejercicio1, Ejercicio2, Ejercicio3, Ejercicio4, Certificados,
   Ejercicio5, MenuEjercicios, ComparadorPrestamo, CumpleañosApp
 } from './ExamplexNavigation/IndexExample'
 import { FacebookView, GoogleView, GithView } from '../Views/WebViews/IndexWebViews'
@@ -51,6 +51,7 @@ export default function MyStackNavigation() {
       <Stack.Screen name="exampleSimples" options={{ headerShown: false }} component={ExamplesSimples} />
       <Stack.Screen name="exampleUdemy" options={{ headerShown: false }} component={ComparadorPrestamos} />
       <Stack.Screen name="exampleUdemyApp2" options={{ headerShown: false }} component={CumpleañosApps} />
+      <Stack.Screen name="exampleCertificados" options={{ headerShown: false }} component={Certificados} />
       <Stack.Screen name="Google" options={{ headerShown: false }} component={GoogleView} />
       <Stack.Screen name="Facebook" options={{ headerShown: false }} component={FacebookView} />
       <Stack.Screen name="Gith" options={{ headerShown: false }} component={GithView} />

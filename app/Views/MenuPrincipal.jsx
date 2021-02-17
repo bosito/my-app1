@@ -164,7 +164,7 @@ export default function MenuPrincipal(props) {
                 />
 
                 <Boton_Image reFerencia={BotonRef3}
-                    imageFondo={imgbotonThree} viewName={'exampleUdemyApp2'}
+                    imageFondo={imgbotonThree} viewName={'exampleCertificados'}
                     txtDescripcion={'Cursos Terminados'} navigation={navigation}
                     txtTilteImage={'Certificados'}
                 />

@@ -2,13 +2,13 @@ import React, { useRef, useState } from 'react';
 import {
     View, Text, ScrollView, StyleSheet,
     TouchableWithoutFeedback, TouchableOpacity,
-    Dimensions, DrawerLayoutAndroid, Image, Linking
+    Dimensions, DrawerLayoutAndroid, Image, Linking, Button
 } from 'react-native';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
 import { MaterialCommunityIcons, AntDesign, FontAwesome, EvilIcons, Ionicons, Octicons, } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
-import { MyBoton, Boton_Image } from '../Components/IndexComonent';
+import { MyBoton, Boton_Image, DrawerMenuPrinsipal } from '../Components/IndexComonent';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -39,16 +39,9 @@ export default function MenuPrincipal(props) {
     const BotonRef4 = useRef();
     const DrawerNavigationReact = useRef();
 
-    const navigationView = () => (
-        <View style={[styles.container, styles.navigationContainer]}>
-            <Text style={styles.paragraph}>I'm in the Drawer!</Text>
-        </View>
-    );
-
     const RenderNavBar = () => {
         return (
             <View style={stylesNav.navContainer}>
-                <View style={stylesNav.statusBar} />
                 <View style={stylesNav.navBar}>
                     <TouchableOpacity style={stylesNav.iconLeft} onPress={() => navigation.navigate('Login')}>
                         <Ionicons name="arrow-back" size={30} color="white" />
@@ -81,9 +74,8 @@ export default function MenuPrincipal(props) {
             setTimeout(() => {
                 DrawerNavigationReact.current.openDrawer();
             }, 1000);
-
         }
-
+        
         return (
             <>
                 <TouchableWithoutFeedback onPress={AuctionPress}>
@@ -116,7 +108,7 @@ export default function MenuPrincipal(props) {
 
         const handleEailPress = async () => {
             //en Ios la separacion es con & en lugar de ?
-            await Linking.openURL("mailto:bosito321@gmail.com?subject=Asunto Posible Trabajo&body=Este es tu mensaje, para mi.")
+            await Linking.openURL("mailto:bosito321@gmail.com?subject=Asunto Posible Trabajo&body=Este es tu mensaje, gracias por contactarme.")
         }
 
         return (
@@ -148,67 +140,67 @@ export default function MenuPrincipal(props) {
 
     const renderContent = () => {
         return (
-            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-                <View style={Styles.container}>
 
-                    <View style={{ width: '100%', height: 50, backgroundColor: 'black', }} />
+            <View style={Styles.container}>
 
-                    <Animatable.View style={styles.myCard} animation={'bounceInLeft'} direction={'normal'} duration={7000}>
-                        <Text style={{ fontStyle: 'italic' }}>{txtLema}</Text>
-                    </Animatable.View>
+                <View style={{ width: '100%', height: 50, backgroundColor: 'black', }} />
 
-                    <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
+                <Animatable.View style={styles.myCard} animation={'bounceInLeft'} direction={'normal'} duration={7000}>
+                    <Text style={{ fontStyle: 'italic' }}>{txtLema}</Text>
+                </Animatable.View>
 
-                    <Boton_Image reFerencia={BotonRef}
-                        imageFondo={imgPriApp} viewName={'exampleUdemy'}
-                        txtDescripcion={'Prestamos'} navigation={navigation}
-                        txtTilteImage={'Cotizador'}
-                    />
+                <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
 
-                    <Boton_Image reFerencia={BotonRef2}
-                        imageFondo={imgbotonSecond} viewName={'exampleUdemyApp2'}
-                        txtDescripcion={'Recordatorio de Compleaños'} navigation={navigation}
-                        txtTilteImage={'Cumpleaños'}
-                    />
+                <Boton_Image reFerencia={BotonRef}
+                    imageFondo={imgPriApp} viewName={'exampleUdemy'}
+                    txtDescripcion={'Prestamos'} navigation={navigation}
+                    txtTilteImage={'Cotizador'}
+                />
 
-                    <Boton_Image reFerencia={BotonRef3}
-                        imageFondo={imgbotonThree} viewName={'exampleUdemyApp2'}
-                        txtDescripcion={'Cursos Terminados'} navigation={navigation}
-                        txtTilteImage={'Certificados'}
-                    />
+                <Boton_Image reFerencia={BotonRef2}
+                    imageFondo={imgbotonSecond} viewName={'exampleUdemyApp2'}
+                    txtDescripcion={'Recordatorio de Compleaños'} navigation={navigation}
+                    txtTilteImage={'Cumpleaños'}
+                />
 
-                    <Boton_Image reFerencia={BotonRef4}
-                        imageFondo={imgbotonFuor} viewName={'exampleUdemyApp2'}
-                        txtDescripcion={'Transporte'} navigation={navigation}
-                        txtTilteImage={'Proyectos Privados'}
-                    />
+                <Boton_Image reFerencia={BotonRef3}
+                    imageFondo={imgbotonThree} viewName={'exampleUdemyApp2'}
+                    txtDescripcion={'Cursos Terminados'} navigation={navigation}
+                    txtTilteImage={'Certificados'}
+                />
 
-                    <View style={Styles.myFooder}>
-                        <Text style={[Styles.txtGlobal, { color: 'white', }]}>
-                            Sigueme en mis redes Sociales
+                <Boton_Image reFerencia={BotonRef4}
+                    imageFondo={imgbotonFuor} viewName={'exampleUdemyApp2'}
+                    txtDescripcion={'Transporte'} navigation={navigation}
+                    txtTilteImage={'Proyectos Privados'}
+                />
+
+                <View style={Styles.myFooder}>
+                    <Text style={[Styles.txtGlobal, { color: 'white', }]}>
+                        Sigueme en mis redes Sociales
                         </Text>
-                        <MyIconstRedes />
-                        <Text style={[Styles.txtGlobal, { color: 'white', }]}>
-                            Power React-Native
+                    <MyIconstRedes />
+                    <Text style={[Styles.txtGlobal, { color: 'white', }]}>
+                        Power React-Native
                         </Text>
-                        <View style={styles.contenFoderLogo}>
-                            <Animatable.Image
-                                style={styles.tinyLogo}
-                                source={imageReact}
-                                animation={'rotate'}
-                                direction={'normal'}
-                                duration={9000}
-                                resizeMode={'stretch'}
-                                iterationCount={'infinite'}
-                            />
-                            <Text style={styles.txtFoder}>
-                                Creador Jose Luis Jimenez Vazquez
+                    <View style={styles.contenFoderLogo}>
+                        <Animatable.Image
+                            style={styles.tinyLogo}
+                            source={imageReact}
+                            animation={'rotate'}
+                            direction={'normal'}
+                            duration={9000}
+                            resizeMode={'stretch'}
+                            iterationCount={'infinite'}
+                        />
+                        <Text style={styles.txtFoder}>
+                            Creador Jose Luis Jimenez Vazquez
                             </Text>
-                        </View>
                     </View>
-
                 </View>
-            </ScrollView >
+
+            </View>
+
         )
     }
 
@@ -217,7 +209,7 @@ export default function MenuPrincipal(props) {
         <DrawerLayoutAndroid ref={DrawerNavigationReact}
             drawerWidth={270}
             drawerPosition={"left"}
-            renderNavigationView={navigationView}
+            renderNavigationView={DrawerMenuPrinsipal}
             drawerBackgroundColor="#24241c"
         >
             <ReactNativeParallaxHeader
@@ -279,10 +271,6 @@ const stylesNav = StyleSheet.create({
     navContainer: {
         height: HEADER_HEIGHT,
         marginHorizontal: 10,
-    },
-    statusBar: {
-        height: STATUS_BAR_HEIGHT,
-        backgroundColor: 'transparent',
     },
     navBar: {
         height: NAV_BAR_HEIGHT,

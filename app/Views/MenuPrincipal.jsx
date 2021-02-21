@@ -103,7 +103,6 @@ export default function MenuPrincipal(props) {
 
     const renderContent = () => {
         return (
-
             <View style={Styles.container}>
 
                 <View style={{ width: '100%', height: 50, backgroundColor: 'black', }} />
@@ -190,7 +189,6 @@ export default function MenuPrincipal(props) {
                 scrollEventThrottle={50}
                 //backgroundColor="black"
                 //containerStyle={stylesNav.container}
-                //contentContainerStyle={stylesNav.contentContainer}
                 innerContainerStyle={stylesNav.container}
                 alwaysShowTitle={false}
                 alwaysShowNavBar={false}
@@ -229,9 +227,6 @@ const styles = StyleSheet.create({
 })
 
 const stylesNav = StyleSheet.create({
-    contentContainer: {
-        flexGrow: 1,
-    },
     navContainer: {
         height: HEADER_HEIGHT,
         marginHorizontal: 10,

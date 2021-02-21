@@ -1,22 +1,23 @@
 import React, { useRef, useState } from 'react';
 import {
-    View, Text, ScrollView, StyleSheet,
+    View, Text, StyleSheet,
     TouchableWithoutFeedback, TouchableOpacity,
-    Dimensions, DrawerLayoutAndroid, Image, Linking, Button
+    Dimensions, DrawerLayoutAndroid, Image
 } from 'react-native';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
-import { MaterialCommunityIcons, AntDesign, FontAwesome, EvilIcons, Ionicons, Octicons, } from '@expo/vector-icons';
+import { EvilIcons, Ionicons } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
-import { MyBoton, Boton_Image, DrawerMenuPrinsipal } from '../Components/IndexComonent';
+import { MyBoton, Boton_Image, DrawerMenuPrinsipal, MyIconstRedes } from '../Components/IndexComonent';
 
+//---------
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;
 const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
 const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
 const NAV_BAR_HEIGHT = HEADER_HEIGHT - STATUS_BAR_HEIGHT;
-
+//----------
 
 export default function MenuPrincipal(props) {
 
@@ -100,44 +101,6 @@ export default function MenuPrincipal(props) {
         );
     };
 
-    const MyIconstRedes = () => {
-
-        const handleWhatsappPress = async () => {
-            await Linking.openURL("http://wa.me/9981801932")
-        }
-
-        const handleEailPress = async () => {
-            //en Ios la separacion es con & en lugar de ?
-            await Linking.openURL("mailto:bosito321@gmail.com?subject=Asunto Posible Trabajo&body=Este es tu mensaje, gracias por contactarme.")
-        }
-
-        return (
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-
-                <TouchableOpacity onPress={() => navigation.navigate('Facebook')}>
-                    <FontAwesome name="facebook-square" size={40} color="#04d3fa" />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={handleEailPress}>
-                    <Octicons name="mail" size={40} color="#04d3fa" />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={handleWhatsappPress} >
-                    <FontAwesome name="whatsapp" size={40} color="#04d3fa" />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('Google')}>
-                    <MaterialCommunityIcons name="google-chrome" size={40} color="#04d3fa" />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('Gith')}>
-                    <AntDesign name="github" size={40} color="#04d3fa" />
-                </TouchableOpacity>
-
-            </View>
-        )
-    }
-
     const renderContent = () => {
         return (
 
@@ -178,11 +141,13 @@ export default function MenuPrincipal(props) {
                 <View style={Styles.myFooder}>
                     <Text style={[Styles.txtGlobal, { color: 'white', }]}>
                         Sigueme en mis redes Sociales
-                        </Text>
-                    <MyIconstRedes />
+                    </Text>
+
+                    <MyIconstRedes navigation={navigation} />
+
                     <Text style={[Styles.txtGlobal, { color: 'white', }]}>
                         Power React-Native
-                        </Text>
+                    </Text>
                     <View style={styles.contenFoderLogo}>
                         <Animatable.Image
                             style={styles.tinyLogo}
@@ -200,14 +165,13 @@ export default function MenuPrincipal(props) {
                 </View>
 
             </View>
-
         )
     }
 
     //compoent principal
     return (
         <DrawerLayoutAndroid ref={DrawerNavigationReact}
-            drawerWidth={270}
+            drawerWidth={280}
             drawerPosition={"left"}
             renderNavigationView={DrawerMenuPrinsipal}
             drawerBackgroundColor="#24241c"
@@ -285,4 +249,3 @@ const stylesNav = StyleSheet.create({
         fontSize: 18,
     },
 });
-

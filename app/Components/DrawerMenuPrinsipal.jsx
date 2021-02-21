@@ -4,7 +4,7 @@ import { StylesMenu, Styles } from '../Styles/IndexStyles';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 
 const image = require("../../assets/images/myIcon.png");
-const COLOR_bOTON = '#232324'
+const COLOR_bOTON = '#2b2b24'
 
 //estudios
 //otras avilidades
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     botonDrawer: {
         flex: 0,
         backgroundColor: COLOR_bOTON,
-        width: '95%',
+        width: '92%',
         height: 40,
         marginVertical: 5,
         marginHorizontal: 6,

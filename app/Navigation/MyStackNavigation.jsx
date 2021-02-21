@@ -42,7 +42,6 @@ function CumpleañosApps() {
   )
 }
 
-
 export default function MyStackNavigation() {
   return (
     <Stack.Navigator initialRouteName="Login">

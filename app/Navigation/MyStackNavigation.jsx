@@ -2,7 +2,8 @@ import React from "react";
 import { MenuPrincipal, Login } from '../Views/IndexViews';
 import {
   Ejercicio1, Ejercicio2, Ejercicio3, Ejercicio4, Certificados,
-  Ejercicio5, MenuEjercicios, ComparadorPrestamo, CumpleañosApp
+  Ejercicio5, MenuEjercicios, ComparadorPrestamo, CumpleañosApp,
+  MenuComparadorPrestamo, MenuCumpleañosApp,
 } from './ExamplexNavigation/IndexExample'
 import { FacebookView, GoogleView, GithView } from '../Views/WebViews/IndexWebViews'
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,7 +12,6 @@ const Stack = createStackNavigator();
 const StackExamples = createStackNavigator();
 const StackExampleCotizador = createStackNavigator();
 const StackCumpleañosApp = createStackNavigator();
-const StackWebView = createStackNavigator();
 
 function ExamplesSimples() {
   return (
@@ -29,7 +29,14 @@ function ExamplesSimples() {
 function ComparadorPrestamos() {
   return (
     <StackExampleCotizador.Navigator>
-      <StackExampleCotizador.Screen name="ComparadorPrestamo" options={{ headerShown: false }} component={ComparadorPrestamo} />
+      <StackExampleCotizador.Screen name="MenuComparadorPrestamo"
+        options={{ headerShown: false }}
+        component={MenuComparadorPrestamo}
+      />
+      <StackExampleCotizador.Screen name="ComparadorPrestamo"
+        options={{ headerShown: false }}
+        component={ComparadorPrestamo}
+      />
     </StackExampleCotizador.Navigator>
   )
 }
@@ -37,7 +44,14 @@ function ComparadorPrestamos() {
 function CumpleañosApps() {
   return (
     <StackCumpleañosApp.Navigator>
-      <StackCumpleañosApp.Screen name="CumpleañosApp" options={{ headerShown: false }} component={CumpleañosApp} />
+      <StackCumpleañosApp.Screen name="MenuCumpleañosApp"
+        options={{ headerShown: false }}
+        component={MenuCumpleañosApp}
+      />
+      <StackCumpleañosApp.Screen name="CumpleañosApp"
+        options={{ headerShown: false }}
+        component={CumpleañosApp}
+      />
     </StackCumpleañosApp.Navigator>
   )
 }

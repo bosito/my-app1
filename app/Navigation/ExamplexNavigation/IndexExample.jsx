@@ -7,3 +7,5 @@ export {default as MenuEjercicios} from '../../Views/ExamplesViews/MenuEjercicio
 export {default as ComparadorPrestamo} from '../../Views/ExamplesHard/ComparadorPrestamo';
 export {default as CumpleañosApp} from '../../Views/ExamplesHard/CumpleañosApp';
 export {default as Certificados} from '../../Views/ExamplesHard/Certificados';
+export {default as MenuComparadorPrestamo} from '../../Views/ExamplesHard/MenuComparadorPrestamo';
+export {default as MenuCumpleañosApp} from '../../Views/ExamplesHard/MenuCumpleañosApp';

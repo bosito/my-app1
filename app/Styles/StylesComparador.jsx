@@ -6,7 +6,7 @@ const COLOR_GLOBAL_SECUMDARY = '#006691';
 export default StyleSheet.create({
     heder: {
         width: '100%',
-        height: 225,
+        height: 250,
         alignItems: 'center',
     },
     titleApp: {

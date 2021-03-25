@@ -103,6 +103,10 @@ export default function Login(props) {
                         </Text>
                     </View>
 
+                    <View style={[StylesLogin.myInputConten,{ height: 80 } ]}>
+                        <Text style={{color: 'white'}}>Por el momento y para que puedas ver la app el login no tiene contraseña, Bienbenido.</Text>
+                    </View>
+
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
                         <MyBoton title={'Comprobar Contraseña'} onPress={verifiContraseña} />
                     </View>

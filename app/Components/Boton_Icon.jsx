@@ -5,7 +5,7 @@ export default function Boton_Icon(props) {
     const { image, info, title, handelOnPress } = props;
 
     if (!image || !info || !title) {
-        console.error('Para Usar este componente es obligatorio usar una imagen, de preferencia con fondo tranparente')
+        console.log('Para Usar este componente es obligatorio usar una imagen, de preferencia con fondo tranparente')
     } else {
         return (
             <View style={styles.contenedorPadre}>

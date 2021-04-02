@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react';
 import {
-  Text, View, Dimensions, StyleSheet, Image, ScrollView, Alert, Modal, Pressable
+  Text, View, Dimensions, StyleSheet, Image, ScrollView, Modal, Pressable
 } from 'react-native';
 import { NavBar, Boton_Icon } from '../../Components/IndexComonent'
 import Carousel from 'react-native-looped-carousel';
 import { AntDesign } from '@expo/vector-icons';
+import { OndaSvgOpasity, SololearnSvg } from '../../Components/ComponentsSvg/IndexComponentSvg'
 import { LinearGradient } from 'expo-linear-gradient';
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
+import RNPickerSelect from 'react-native-picker-select';
 
 const windowWidth = Dimensions.get('window').width;
 const image_carruser_1 = require('../../../assets/images/imageCarruselUdemy.png');
@@ -17,13 +19,14 @@ const image_carruser_4 = require('../../../assets/images/ImageCarruselGoogle.png
 //Imagenes Botones u_udemy
 const image_boton1 = require('../../../assets/images/images_certificados/u_udemy.png');
 const image_boton2 = require('../../../assets/images/images_certificados/sololearn_icon.png');
+const image_boton3 = require({ uri: ''});
+
 
 const ComponentCarrusel = (props) => {
   const { imageSource } = props;
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white' }}>
-      <Text style={{ fontSize: 19, fontStyle: 'italic' }}>Cursos tomados</Text>
-      <Image style={[{ width: '90%', height: 150, resizeMode: 'contain' }]} source={imageSource} />
+    <View style={styles.cardCarusel}>
+      <Image style={[{ width: '90%', height: 150, resizeMode: 'contain' }]} source={image_boton2} />
     </View>
   )
 }
@@ -36,7 +39,6 @@ const MyModal = (props) => {
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >
@@ -63,53 +65,75 @@ export default function Certificados(props) {
   const { navigation } = props;
 
   return (
-    <>
+    <View style={{ flex: 1 }} >
+      <MyModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
       <NavBar navigation={navigation} />
-      <MyModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
-      <ScrollView>
-        <View style={{ flex: 1 }} >
-          <LinearGradient colors={['rgba(0,255,128,0.8)', 'rgba(0,204,204,0.5)']} style={{ flex: 1 }}>
-            <Carousel delay={5000}
-              style={[styles.carousel]}
-              autoplay
-              swipe
-              //pageInfo
-              bullets
-              bulletStyle={{ backgroundColor: 'black' }}
-              chosenBulletStyle={{ backgroundColor: 'gray' }}
-              arrows
-              arrowStyle={styles.arrows}
-              leftArrowText={<AntDesign name="arrowleft" size={24} color="black" />}
-              rightArrowText={<AntDesign name="arrowright" size={24} color="black" />}
-            //onAnimateNextPage={(p) => console.log(p)}
-            >
-              <ComponentCarrusel imageSource={image_carruser_1} />
-              <ComponentCarrusel imageSource={image_carruser_2} />
-              <ComponentCarrusel imageSource={image_carruser_3} />
-              <ComponentCarrusel imageSource={image_carruser_4} />
-            </Carousel>
+      <OndaSvgOpasity />
 
-            <Boton_Icon image={image_boton1}
-              info="Paguina web de cursos de todo tipo"
-              title="Udemy"
-            />
+      <Text style={{ fontSize: 19, fontStyle: 'italic', textAlign: 'center' }}>
+        Cursos y Sertificados Adquiridos
+      </Text>
 
-            <Boton_Icon image={image_boton2}
-              info="App de cursos de programación"
-              title="Sololearn"
-            />
+      <Carousel delay={5000}
+        style={[styles.carousel]}
+        autoplay
+        swipe
+        //pageInfo
+        bullets
+        bulletStyle={{ backgroundColor: 'black' }}
+        chosenBulletStyle={{ backgroundColor: 'gray' }}
+        arrows={false}
+        arrowStyle={styles.arrows}
+        leftArrowText={<AntDesign name="arrowleft" size={24} color="black" />}
+        rightArrowText={<AntDesign name="arrowright" size={24} color="black" />}
+      //onAnimateNextPage={(p) => console.log(p)}
+      >
+        <ComponentCarrusel imageSource={image_carruser_1} />
+        <ComponentCarrusel imageSource={image_carruser_2} />
+        <ComponentCarrusel imageSource={image_carruser_3} />
+        <ComponentCarrusel imageSource={image_carruser_4} />
+      </Carousel>
 
-            <Pressable
-              style={[styles.button, styles.buttonOpen]}
-              onPress={() => setModalVisible(true)}
-            >
-              <Text style={styles.textStyle}>Show Modal</Text>
-            </Pressable>
+      <ScrollView style={{ marginTop: -100, zIndex: -1 }}>
+        <LinearGradient colors={['#1897b3', '#042f6a']}
+          style={{ borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
+          <View style={{ width: '100%', height: 80 }} />
 
-          </LinearGradient>
-        </View>
+
+
+          <RNPickerSelect
+            children={
+              <Boton_Icon image={image_boton1}
+                info="Paguina web de cursos de todo tipo"
+                title="Udemy"
+              />
+            }
+            onValueChange={(value) => console.log(value)}
+            items={[
+              { label: 'React', value: 'react' },
+            ]}
+          />
+
+          <RNPickerSelect
+            children={
+              <Boton_Icon image={image_boton2}
+                info="App de cursos de programación"
+                title="Sololearn"
+              />
+            }
+            items={[
+              { label: 'Php', value: 'php' },
+              { label: 'Reat y Redux basic', value: 'reat y redux' },
+              { label: 'JavaScript', value: 'javaScript' },
+              { label: 'Css', value: 'css' },
+              { label: 'Html', value: 'html' },
+            ]}
+          />
+
+        </LinearGradient>
       </ScrollView>
-    </>
+
+    </View>
   );
 }
 
@@ -117,6 +141,7 @@ const styles = StyleSheet.create({
   carousel: {
     width: windowWidth,
     height: 200,
+    backgroundColor: 'transparent'
   },
   arrows: {
     backgroundColor: 'rgba(128, 128, 126,0.3)',
@@ -148,24 +173,19 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
   buttonClose: {
     backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }
+  },
+  cardCarusel: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'rgb(251, 252, 252)',
+    margin: 10,
+    borderRadius: 20,
+    elevation: 9
+  },
 })

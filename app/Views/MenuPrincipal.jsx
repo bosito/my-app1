@@ -111,8 +111,6 @@ export default function MenuPrincipal(props) {
                     <Text style={{ fontStyle: 'italic' }}>{txtLema}</Text>
                 </Animatable.View>
 
-                <MyBoton title={'Ejercicios Javascript'} onPress={() => navigation.navigate('exampleSimples')} navigation={navigation} />
-
                 <Boton_Image reFerencia={BotonRef}
                     imageFondo={imgPriApp} viewName={'exampleUdemy'}
                     txtDescripcion={'Prestamos'} navigation={navigation}

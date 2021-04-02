@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     contenedorPadre: {
         width: '100%',
         height: 180,
-        marginVertical: 5,
         alignItems: 'center',
         justifyContent: 'center',
     },

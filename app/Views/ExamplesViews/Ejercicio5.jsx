@@ -6,7 +6,7 @@ import * as Animatable from "react-native-animatable";
 
 export default function Ejercicio5() {
   let txtPrincipal =
-    "En este ejercicio usaremos la libreria llamada react-native-animatable para hacer animaciones sensillas";
+    "En este ejercicio haremos animaciones sensillas";
   const animationRef = useRef();
   const ZoomRef = useRef();
   const CirculoRef = useRef();

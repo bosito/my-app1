@@ -10,6 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "androidNavigationBar": {
+      "backgroundColor": "#000000"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -28,7 +31,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Hola soy un programador  junior este es mi portafolio en el cual recopilo varios proyectos para mostrar de manera funcional parte de mi experiencia ",
+    "description": "Hola soy un programador  junior este es mi portafolio en el cual recopilo varios mini proyectos para mostrar de manera funcional parte de mi experiencia ,  tanto en diseño como en logística.",
     "githubUrl": "https://github.com/bosito/my-app1"
   }
 }

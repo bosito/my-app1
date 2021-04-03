@@ -67,7 +67,7 @@ export default function MenuComparadorPrestamo(props) {
                     Esta Pequeña Aplicacion Fue Echa utilizando lo mas nuevo en react, hoocks
                 </Text>
                 <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                    Pensada para ser funcional y reactiva al igual en performants ya que se reutilizo codigo
+                    Pensada para ser funcional, reactiva y si afectar el performants ya que se reutilizo codigo
                     en mas de una ocacion
                 </Text>
             </View>

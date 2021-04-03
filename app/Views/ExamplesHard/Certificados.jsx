@@ -8,7 +8,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { OndaSvgOpasity, SololearnSvg } from '../../Components/ComponentsSvg/IndexComponentSvg'
 import { LinearGradient } from 'expo-linear-gradient';
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
-import RNPickerSelect from 'react-native-picker-select';
 
 const windowWidth = Dimensions.get('window').width;
 const image_carruser_1 = require('../../../assets/images/imageCarruselUdemy.png');
@@ -19,14 +18,14 @@ const image_carruser_4 = require('../../../assets/images/ImageCarruselGoogle.png
 //Imagenes Botones u_udemy
 const image_boton1 = require('../../../assets/images/images_certificados/u_udemy.png');
 const image_boton2 = require('../../../assets/images/images_certificados/sololearn_icon.png');
-const image_boton3 = require({ uri: ''});
+//const image_boton3 = require({ uri: ''});
 
 
 const ComponentCarrusel = (props) => {
   const { imageSource } = props;
   return (
     <View style={styles.cardCarusel}>
-      <Image style={[{ width: '90%', height: 150, resizeMode: 'contain' }]} source={image_boton2} />
+      <Image style={[{ width: '90%', height: 150, resizeMode: 'contain' }]} source={imageSource} />
     </View>
   )
 }
@@ -77,7 +76,7 @@ export default function Certificados(props) {
       <Carousel delay={5000}
         style={[styles.carousel]}
         autoplay
-        swipe
+        //swipe
         //pageInfo
         bullets
         bulletStyle={{ backgroundColor: 'black' }}
@@ -99,35 +98,22 @@ export default function Certificados(props) {
           style={{ borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
           <View style={{ width: '100%', height: 80 }} />
 
-
-
-          <RNPickerSelect
-            children={
-              <Boton_Icon image={image_boton1}
-                info="Paguina web de cursos de todo tipo"
-                title="Udemy"
-              />
-            }
-            onValueChange={(value) => console.log(value)}
-            items={[
-              { label: 'React', value: 'react' },
-            ]}
+          <Boton_Icon image={image_boton2}
+            info="App de cursos de programación"
+            title="Sololearn"
+            handelOnPress={() => setModalVisible(!modalVisible)}
           />
 
-          <RNPickerSelect
-            children={
-              <Boton_Icon image={image_boton2}
-                info="App de cursos de programación"
-                title="Sololearn"
-              />
-            }
-            items={[
-              { label: 'Php', value: 'php' },
-              { label: 'Reat y Redux basic', value: 'reat y redux' },
-              { label: 'JavaScript', value: 'javaScript' },
-              { label: 'Css', value: 'css' },
-              { label: 'Html', value: 'html' },
-            ]}
+          <Boton_Icon image={image_boton1}
+            info="Paguina web de cursos de todo tipo"
+            title="Udemy"
+            handelOnPress={() => setModalVisible(!modalVisible)}
+          />
+
+          <Boton_Icon image={image_boton1}
+            info="Paguina web de cursos de todo tipo"
+            title="Udemy"
+            handelOnPress={() => setModalVisible(!modalVisible)}
           />
 
         </LinearGradient>

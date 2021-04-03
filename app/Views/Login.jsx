@@ -104,7 +104,7 @@ export default function Login(props) {
                     </View>
 
                     <View style={[StylesLogin.myInputConten,{ height: 80 } ]}>
-                        <Text style={{color: 'white'}}>Por el momento y para que puedas ver la app el login no tiene contraseña, Bienbenido.</Text>
+                        <Text style={{color: 'white'}}>Por el momento y para que puedas ver la app el login no tiene contraseña, Bienvenido.</Text>
                     </View>
 
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>

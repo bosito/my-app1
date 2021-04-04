@@ -6,7 +6,8 @@ import {
   MenuComparadorPrestamo, MenuCumpleañosApp,
 } from './ExamplexNavigation/IndexExample'
 import { Sololearn } from "../Navigation/NavigationCursos/IndexCursos";
-import { FacebookView, GoogleView, GithView } from '../Views/WebViews/IndexWebViews'
+import { EstudiosView, OtrasHabilidadesView } from "./NavigationDrawer/IndexNavigationDrawer";
+import { FacebookView, GoogleView, GithView, IbisPaintView } from '../Views/WebViews/IndexWebViews'
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
@@ -14,6 +15,16 @@ const StackExamples = createStackNavigator();
 const StackExampleCotizador = createStackNavigator();
 const StackCumpleañosApp = createStackNavigator();
 const StackCursos = createStackNavigator();
+const StackDrawerNavigation = createStackNavigator();
+
+function DraweNAvigationViews() {
+  return (
+    <StackDrawerNavigation.Navigator initialRouteName="Estudios">
+      <StackDrawerNavigation.Screen name="Estudios" options={{ headerShown: false }} component={EstudiosView} />
+      <StackDrawerNavigation.Screen name="OtrasHabilidades" options={{ headerShown: false }} component={OtrasHabilidadesView} />
+    </StackDrawerNavigation.Navigator>
+  )
+}
 
 function CertificadosView() {
   return (
@@ -76,9 +87,11 @@ export default function MyStackNavigation() {
       <Stack.Screen name="exampleUdemy" options={{ headerShown: false }} component={ComparadorPrestamos} />
       <Stack.Screen name="exampleUdemyApp2" options={{ headerShown: false }} component={CumpleañosApps} />
       <Stack.Screen name="exampleCertificados" options={{ headerShown: false }} component={CertificadosView} />
+      <Stack.Screen name="DrawerNavigation" options={{ headerShown: false }} component={DraweNAvigationViews} />
       <Stack.Screen name="Google" options={{ headerShown: false }} component={GoogleView} />
       <Stack.Screen name="Facebook" options={{ headerShown: false }} component={FacebookView} />
       <Stack.Screen name="Gith" options={{ headerShown: false }} component={GithView} />
+      <Stack.Screen name="IbisPaint" options={{ headerShown: false }} component={IbisPaintView} />
     </Stack.Navigator>
   );
 }

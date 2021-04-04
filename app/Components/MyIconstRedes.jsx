@@ -39,6 +39,10 @@ export default function MyIconstRedes(props) {
                 <AntDesign name="github" size={40} color={COLOR_ICON} />
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => navigation.navigate('IbisPaint')}>
+                <FontAwesome name="paint-brush" size={40} color={COLOR_ICON} />
+            </TouchableOpacity>
+
         </View>
     )
 }

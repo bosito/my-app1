@@ -10,7 +10,7 @@ const COLOR_bOTON = '#2b2b24'
 //otras avilidades
 
 const MyBotonDrawer = (props) => {
-    const { titleBoton, handelPress, iconBoton } = props;
+    const { titleBoton, handelPress, iconBoton, } = props;
 
     return (
         <TouchableOpacity onPress={handelPress}>
@@ -22,7 +22,8 @@ const MyBotonDrawer = (props) => {
     )
 }
 
-export default function DrawerMenuPrinsipal() {
+export default function DrawerMenuPrinsipal(props) {
+    const { navigation } = props
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground source={{ uri: 'https://okdiario.com/img/2020/09/15/el-ano-en-el-que-se-vio-una-aurora-boreal-en-espana-655x368.jpg' }}
@@ -38,11 +39,11 @@ export default function DrawerMenuPrinsipal() {
                 </View>
             </ImageBackground>
 
-            <MyBotonDrawer titleBoton={"Estudios"}
+            <MyBotonDrawer titleBoton={"Estudios"} handelPress={()=>navigation.navigate('DrawerNavigation')}
                 iconBoton={<Entypo name="book" size={24} color="white" />}
             />
 
-            <MyBotonDrawer titleBoton={"Otras habilidades"}
+            <MyBotonDrawer titleBoton={"Otras habilidades"} handelPress={()=> navigation.navigate('DrawerNavigation',{ screen: 'OtrasHabilidades'})}
                 iconBoton={<AntDesign name="star" size={24} color="white" />}
             />
         </View>

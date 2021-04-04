@@ -8,7 +8,7 @@ import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
 import { EvilIcons, Ionicons } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
-import { MyBoton, Boton_Image, DrawerMenuPrinsipal, MyIconstRedes } from '../Components/IndexComonent';
+import { Boton_Image, DrawerMenuPrinsipal, MyIconstRedes } from '../Components/IndexComonent';
 
 //---------
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -145,6 +145,7 @@ export default function MenuPrincipal(props) {
                     <Text style={[Styles.txtGlobal, { color: 'white', }]}>
                         Power React-Native
                     </Text>
+
                     <View style={styles.contenFoderLogo}>
                         <Animatable.Image
                             style={styles.tinyLogo}
@@ -170,7 +171,7 @@ export default function MenuPrincipal(props) {
         <DrawerLayoutAndroid ref={DrawerNavigationReact}
             drawerWidth={280}
             drawerPosition={"left"}
-            renderNavigationView={DrawerMenuPrinsipal}
+            renderNavigationView={()=><DrawerMenuPrinsipal navigation={navigation}/>}
             drawerBackgroundColor="#24241c"
         >
             <ReactNativeParallaxHeader
@@ -222,8 +223,9 @@ const styles = StyleSheet.create({
         color: 'white',
         marginBottom: 10
     },
-})
+});
 
+//style navigator 
 const stylesNav = StyleSheet.create({
     navContainer: {
         height: HEADER_HEIGHT,

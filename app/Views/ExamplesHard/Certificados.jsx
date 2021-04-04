@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import {
-  Text, View, Dimensions, StyleSheet, Image, ScrollView, Modal, Pressable
+  Text, View, Dimensions, StyleSheet, Image, ScrollView, TouchableOpacity, Button
 } from 'react-native';
 import { NavBar, Boton_Icon } from '../../Components/IndexComonent'
 import Carousel from 'react-native-looped-carousel';
 import { AntDesign } from '@expo/vector-icons';
-import { OndaSvgOpasity, SololearnSvg } from '../../Components/ComponentsSvg/IndexComponentSvg'
+import { OndaSvgOpasity } from '../../Components/ComponentsSvg/IndexComponentSvg'
 import { LinearGradient } from 'expo-linear-gradient';
-import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
+//import { Collapse, CollapseHeader, CollapseBody, AccordionList } from 'accordion-collapse-react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const image_carruser_1 = require('../../../assets/images/imageCarruselUdemy.png');
@@ -18,8 +18,6 @@ const image_carruser_4 = require('../../../assets/images/ImageCarruselGoogle.png
 //Imagenes Botones u_udemy
 const image_boton1 = require('../../../assets/images/images_certificados/u_udemy.png');
 const image_boton2 = require('../../../assets/images/images_certificados/sololearn_icon.png');
-//const image_boton3 = require({ uri: ''});
-
 
 const ComponentCarrusel = (props) => {
   const { imageSource } = props;
@@ -30,42 +28,35 @@ const ComponentCarrusel = (props) => {
   )
 }
 
-const MyModal = (props) => {
-  const { modalVisible, setModalVisible } = props;
+const ListBoton = (props) => {
+  const { image, title, despripcion, onPress } = props;
   return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
-    >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>Hello World!</Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-            <Text style={styles.textStyle}>Hide Modal</Text>
-          </Pressable>
+    <TouchableOpacity onPress={onPress}>
+      <View style={{ width: '100%', height: 100, backgroundColor: 'white', flexDirection: 'row', paddingHorizontal: 5, marginBottom: 5 }}>
+        <Image style={{ width: 100, height: 100 }} resizeMode="stretch"
+          source={image}
+        />
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{title}</Text>
+          <Text style={{ textAlign: 'center' }}>{despripcion}</Text>
+          <Text style={{ fontStyle: 'italic', color: 'gray', marginTop: 10 }}>ver certificado</Text>
         </View>
       </View>
-    </Modal>
+    </TouchableOpacity>
   )
 }
 
 export default function Certificados(props) {
-
-  const [modalVisible, setModalVisible] = useState(false);
+  const [listSololearn, setListSololearn] = useState(false);
+  const [udemyList, setUdemyList] = useState(false);
+  const [googleList, setGoogleList] = useState(false);
+  const [gobierno, setGobierno] = useState(false);
   const BotonRef_one = useRef();
   const ScrollRef = useRef();
   const { navigation } = props;
 
   return (
     <View style={{ flex: 1 }} >
-      <MyModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
       <NavBar navigation={navigation} />
       <OndaSvgOpasity />
 
@@ -73,7 +64,8 @@ export default function Certificados(props) {
         Cursos y Sertificados Adquiridos
       </Text>
 
-      <Carousel delay={5000}
+      <Carousel
+        delay={5000}
         style={[styles.carousel]}
         autoplay
         //swipe
@@ -98,23 +90,61 @@ export default function Certificados(props) {
           style={{ borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
           <View style={{ width: '100%', height: 80 }} />
 
-          <Boton_Icon image={image_boton2}
-            info="App de cursos de programación"
-            title="Sololearn"
-            handelOnPress={() => setModalVisible(!modalVisible)}
-          />
 
-          <Boton_Icon image={image_boton1}
-            info="Paguina web de cursos de todo tipo"
-            title="Udemy"
-            handelOnPress={() => setModalVisible(!modalVisible)}
-          />
+          {
+            listSololearn ?
+              (
+                <View style={{ width: '100%', alignItems: 'center', marginTop: 50 }}>
+                  <View style={{ width: '90%', height: 450 }}>
+                    <ListBoton title="Css"
+                      onPress={() => navigation.navigate('SololearnNameScreen', ['Css'])}
+                      despripcion="Hojas de estilo en cascada"
+                      image={{ uri: 'https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_960_720.png' }}
+                    />
+                    <ListBoton title="Html"
+                      onPress={() => navigation.navigate('SololearnNameScreen',['Html'])}
+                      despripcion="Lenguaje de Marcas de Hipertexto"
+                      image={{ uri: 'https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_html_icon_130541.png' }}
+                    />
+                    <ListBoton title="JavaScript"
+                      onPress={() => navigation.navigate('SololearnNameScreen',['JavaScript'])}
+                      despripcion="lenguaje de programación"
+                      image={{ uri: 'http://www.cantabriatic.com/wp-content/uploads/2015/11/javascript-shield-logo-300x169.png' }}
+                    />
+                    <ListBoton title="PHP"
+                      onPress={() => navigation.navigate('SololearnNameScreen',['PHP'])}
+                      despripcion="lenguaje de programación"
+                      image={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/711px-PHP-logo.svg.png' }}
+                    />
+                    <Button title="regresar" color="green" onPress={() => setListSololearn(!listSololearn)} />
+                  </View>
+                </View>
+              )
+              :
+              (
+                <Boton_Icon image={image_boton2}
+                  info="App de cursos de programación"
+                  title="Sololearn"
+                  handelOnPress={() => setListSololearn(!listSololearn)}
+                />
+              )
+          }
 
-          <Boton_Icon image={image_boton1}
-            info="Paguina web de cursos de todo tipo"
-            title="Udemy"
-            handelOnPress={() => setModalVisible(!modalVisible)}
-          />
+          {
+            udemyList ?
+              (
+                <Button title="regresar" color="green" onPress={() => setUdemyList(!udemyList)} />
+              )
+              :
+              (
+                <Boton_Icon image={image_boton1}
+                  info="Paguina web de cursos de todo tipo"
+                  title="Udemy"
+                  handelOnPress={() => setUdemyList(!udemyList)}
+                />
+              )
+          }
+
 
         </LinearGradient>
       </ScrollView>
@@ -135,36 +165,6 @@ const styles = StyleSheet.create({
     width: 40,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  //-------
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-    backgroundColor: 'rgba(0, 0, 0,0.8)'
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
   },
   cardCarusel: {
     flex: 1,

@@ -6,3 +6,9 @@ export default function App() {
     <MyNavigation/>
   );
 }
+
+  // useEffect(() => {
+  //   registerForPushNotificationsAsync().then((token) =>
+  //     setExpoPushToken(token)
+  //   );
+  // }, []);

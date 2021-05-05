@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
     View, Text, StyleSheet,
     TouchableWithoutFeedback, TouchableOpacity,
     Dimensions, DrawerLayoutAndroid, Image
 } from 'react-native';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
+import { useNavigation } from '@react-navigation/native';
 import { StylesMenu, Styles } from '../Styles/IndexStyles';
 import { EvilIcons, Ionicons } from '@expo/vector-icons';
 import * as Animatable from "react-native-animatable";
+import { registerForPushNotificationsAsync } from "../Notifications/Notifications";
 import { Boton_Image, DrawerMenuPrinsipal, MyIconstRedes } from '../Components/IndexComonent';
 
 //---------
@@ -19,9 +21,11 @@ const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
 const NAV_BAR_HEIGHT = HEADER_HEIGHT - STATUS_BAR_HEIGHT;
 //----------
 
-export default function MenuPrincipal(props) {
+export default function MenuPrincipal() {
 
-    const { navigation } = props;
+    useEffect(() => {
+        registerForPushNotificationsAsync()
+    }, [])
 
     const txtLema = `soy un desarrollador algo nuevo pero con la idea de nunca parar de aprender y este es mi potafolio.`;
 
@@ -39,6 +43,7 @@ export default function MenuPrincipal(props) {
     const BotonRef3 = useRef();
     const BotonRef4 = useRef();
     const DrawerNavigationReact = useRef();
+    const navigation = useNavigation()
 
     const RenderNavBar = () => {
         return (
